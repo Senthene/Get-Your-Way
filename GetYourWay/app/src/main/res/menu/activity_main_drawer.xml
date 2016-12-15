@@ -3,24 +3,25 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_reception"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Réception" />
         <item
-            android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Ascenseurs"
+            android:id="@+id/nav_ascenseur" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_toilettes"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Toilettes" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_exit"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Sortie de secours" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Changer d'étages"
+        android:id="@+id/nav_changerEtage">
         <menu>
             <item
                 android:id="@+id/nav_share"
