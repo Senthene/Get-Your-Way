@@ -84,9 +84,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_reception) {
             // Handle the camera action
-        } else if (id == R.id.nav_ascenseur) {
-
-        } else if (id == R.id.nav_toilettes) {
+        }  else if (id == R.id.nav_toilettes) {
 
         } else if (id == R.id.nav_exit) {
 
