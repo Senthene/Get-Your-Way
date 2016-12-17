@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_reception"
             android:icon="@drawable/reception"
             android:title="Réception" />
+
         <item
             android:id="@+id/nav_toilettes"
             android:icon="@drawable/toilettes"
-            android:title="Toilettes" />
+            android:title="toilettes" />
         <item
             android:id="@+id/nav_exit"
             android:icon="@drawable/sortie"
@@ -18,14 +18,15 @@
     </group>
 
     <item android:title="Changer d'étages"
-        android:id="@+id/nav_changerEtage">
+        android:id="@+id/nav_changerEtage"
+        android:visible="true">
         <menu>
             <item
                 android:id="@+id/nav_ascenseur"
                 android:icon="@drawable/ascenseur"
                 android:title="Ascenseurs" />
             <item
-                android:id="@+id/nav_escalier"
+                android:id="@+id/escaliers"
                 android:icon="@drawable/escaliers"
                 android:title="Escaliers" />
         </menu>
