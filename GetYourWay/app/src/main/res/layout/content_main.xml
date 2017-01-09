@@ -32,4 +32,28 @@
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:text="Scanner ma position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scan"
+        android:icon="@drawable/qr"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="resultat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:id="@+id/resultat"
+        android:layout_alignParentTop="true" />
+
+
 </RelativeLayout>

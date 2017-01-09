@@ -9,16 +9,16 @@ public class Ligne {
 
     int idLigne;
     int idBLoc;
-    double departX;
-    double departY;
-    double finX;
-    double finY;
-    double longueur;
-    double angle;
+    float departX;
+    float departY;
+    float finX;
+    float finY;
+    float longueur;
+    float angle;
 
     // Pas de depart Z et de fin Z car nous restons dans le 2D
 
-    public Ligne (int id, int i, double dx, double dy, double fx, double fy, double l, double a){
+    public Ligne (int id, int i, float dx, float dy, float fx, float fy, float l, float a){
 
         idBLoc = i;
         departX = dx;
@@ -30,25 +30,25 @@ public class Ligne {
         idLigne = id;
     }
 
-    public double getDepartX(){
+    public float getDepartX(){
         return departX;
     }
 
-    public double getDepartY(){
+    public float getDepartY(){
         return departY;
     }
 
-    public double getFinX(){
+    public float getFinX(){
         return finX;
     }
 
-    public double getFinY(){
+    public float getFinY(){
         return finY;
     }
-    public double getLongueur(){
+    public float getLongueur(){
         return longueur;
     }
-    public double getAngle(){
+    public float getAngle(){
         return angle;
     }
 
