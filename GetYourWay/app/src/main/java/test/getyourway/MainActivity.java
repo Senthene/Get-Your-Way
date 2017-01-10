@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button scanButton;
-    private double positionX;
-    private double positionY;
+    private float positionX;
+    private float positionY;
     private String message;
     private Position positionActuelle;
     /**
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 IntentIntegrator integrator = new IntentIntegrator(activity);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                integrator.setPrompt("Scan");
+                integrator.setPrompt("Scan de votre position actuelle");
                 integrator.setCameraId(0);
                 integrator.setBeepEnabled(false);
                 integrator.setBarcodeImageEnabled(false);
@@ -95,12 +95,22 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "Vous avez annulé le scan", Toast.LENGTH_LONG).show();
             } else {
                message = result.getContents().substring(0,9);
-                positionX = Double.parseDouble(message);
+                positionX = Float.parseFloat(message);
                 message = result.getContents().substring(9,18);
-                positionY = Double.parseDouble(message);
+                positionY = Float.parseFloat(message);
                 //positionX = message.substring(0, 8);
+                // affichage d'un toat
                 Toast.makeText(this, " X = "+ positionX +" Y=  "+positionY, Toast.LENGTH_LONG).show();
 
+                // passage à l'écran d'affichage de la carte avec la localisation
+
+
+                // ERREUR pour transférer
+                Intent afficherCarte = new Intent(MainActivity.this, CarteActivity.class);
+                positionActuelle.setPosition(positionX,positionY);
+                //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+                afficherCarte.putExtra("positionX", positionX);
+                startActivity(afficherCarte);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

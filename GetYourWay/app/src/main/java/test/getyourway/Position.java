@@ -25,6 +25,12 @@ public class Position {
 
         return p;
     }
+    public float getX(){
+        return x;
+    }
+    public float getY(){
+        return y;
+    }
 }
 
 
