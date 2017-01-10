@@ -18,6 +18,15 @@ public class Ligne {
 
     // Pas de depart Z et de fin Z car nous restons dans le 2D
 
+    public Ligne (float dx, float dy, float fx, float fy){
+
+        departX = dx;
+        departY = dy;
+        finX = fx;
+        finY = fy;
+    }
+
+
     public Ligne (int id, int i, float dx, float dy, float fx, float fy, float l, float a){
 
         idBLoc = i;

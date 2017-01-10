@@ -6,16 +6,16 @@ package test.getyourway;
 
 public class Position {
 
-    float x;
-    float y;
+    double x;
+    double y;
 
-    public Position (float x, float y){
+    public Position (double x, double y){
 
         this.x = x;
         this.y = y;
     }
 
-    public void setPosition (float x, float y){
+    public void setPosition (double x, double y){
 
         this.x = x;
         this.y = y;
@@ -25,10 +25,10 @@ public class Position {
 
         return p;
     }
-    public float getX(){
+    public double getX(){
         return x;
     }
-    public float getY(){
+    public double getY(){
         return y;
     }
 }
