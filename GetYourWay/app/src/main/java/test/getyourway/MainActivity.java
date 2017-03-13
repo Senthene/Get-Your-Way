@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity
 
         scanButton = (Button) findViewById(R.id.scan);
         final Activity activity = this;
+
+
+
         scanButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -68,11 +71,12 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // Snackbar.make(view, "Scannez votre position", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+              //  if (position == null){
+                // Snackbar.make(view, "Scannez votre position", Snackbar.LENGTH_LONG).setAction("Action", null).show();} else ...
                 Intent afficherCarte = new Intent(MainActivity.this, CarteActivity.class);
-                positionActuelle.setPosition(positionX,positionY);
+               // positionActuelle.setPosition(positionX,positionY);
                 //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
-                afficherCarte.putExtra("positionX", positionX);
+                //afficherCarte.putExtra("positionX", positionX);
                 startActivity(afficherCarte);
             }
         });
@@ -160,6 +164,11 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_reception) {
             // Handle the camera action
+            Intent afficherCarte = new Intent(MainActivity.this, SettingsActivity.class);
+            positionActuelle.setPosition(positionX,positionY);
+            //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+            //afficherCarte.putExtra("positionX", positionX);
+            startActivity(afficherCarte);
         } else if (id == R.id.nav_toilettes) {
 
         } else if (id == R.id.nav_exit) {

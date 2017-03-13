@@ -1,13 +1,15 @@
 package test.getyourway;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.widget.ImageView;
 
 import com.google.android.gms.appindexing.Action;
@@ -16,7 +18,6 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class CarteActivity extends AppCompatActivity {
 
@@ -25,6 +26,11 @@ public class CarteActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    Bitmap moi;
+    OurView v;
+    float pX = 0;
+    float pY = 0;
+    Position positionActuelle  = new Position(pX, pY);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +38,40 @@ public class CarteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carte);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        v = new OurView(this);
+        setContentView(v);
+        //v.setOntouchListener(this);
         ArrayList<Ligne> listeLignes = null;
-        float pX = (float)2000.0000;
-        float pY = (float) 2000.0000;
+
         DrawView drawView;
-        Position positionActuelle  = new Position(pX, pY);
 
-        Ligne a = new Ligne(1861.7032f, 2242.0091f, 1926.8037f, 2242.0091f);
-        listeLignes.add(a);
 
-        Ligne b = new Ligne(1861.7032f, 2297.7476f, 1861.7032f, 2242.0091f);
-        listeLignes.add(b);
+        moi = BitmapFactory.decodeResource(getResources(), R.drawable.smiley);
 
-        Ligne c = new Ligne(1549.9740f, 2348.9019f, 1615.0745f, 2348.9019f);
-        listeLignes.add(c);
 
-        Ligne d = new Ligne(1615.0745f, 2348.9019f, 1615.0745f, 2404.6404f);
-        listeLignes.add(d);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
-        
+
+
+  /*  protected void onDraw (int a, int b, int c, int d){
+
+        Rect rectangle = new Rect();
+        rectangle.set(a, b, c, d);
+        Paint rect = new Paint();
+        rect.setColor(Color.BLACK);
+        rect.setStyle(Paint.Style.FILL);
+        v.drawRect (rectangle, rect);
+
+    }*/
+
+
+        //  public void setOntouchListener(CarteActivity; Object ontouchListener;
+
+        //ontouchListener) {
+
+        //// this.ontouchListener = ontouchListener;
+
+        //}
 
         dessine(listeLignes);
 
@@ -61,41 +79,11 @@ public class CarteActivity extends AppCompatActivity {
     }
 
 
-    
+
     public void dessine(ArrayList<Ligne> l) {
-        Paint paint = new Paint();
-        Paint p = new Paint();
-        float pX = (float)2000.0000;
-        float pY = (float) 2000.0000;
-        paint.setColor(Color.BLACK);
-        paint.setStyle(Paint.Style.STROKE);
-        p.setColor(Color.RED);
-        p.setStyle(Paint.Style.FILL_AND_STROKE);
 
-        Bitmap bmp = Bitmap.createBitmap(500,500, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas (bmp);
-
-        Iterator it = l.iterator();
-
-//récupération de l'itérateur
-
-        while (it.hasNext()) {
-
-            Ligne courant;
-            courant = (Ligne) it.next();
-            canvas.drawLine(courant.getDepartX(), courant.getDepartY(), courant.getFinX(), courant.getFinY(), paint);
-
-// itération de la liste
-
-            //récupération de l'objet se trouvant à l'index courant de la liste
-        }
-        float x;
-        float y;
-        x = (float)pX;
-        y = (float)pY;
-        canvas.drawPoint(x,y,paint);
         ImageView img = (ImageView) findViewById(R.id.carte);
-        img.setImageBitmap(bmp);
+        //img.setImageBitmap(bmp);
     }
 
     // ERREUR pour récupérer
@@ -150,4 +138,70 @@ public class CarteActivity extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
+    public void onPause(){
+        super.onPause();
+        v.pause();
+    }
+
+    public void onResume(){
+        super.onResume();
+        v.resume();
+    }
+
+
+
+
+
+    public class OurView extends SurfaceView implements Runnable {
+
+    Thread t = null;
+    SurfaceHolder holder;
+    boolean isItOk = false;
+
+    public OurView (Context context) {
+        super (context);
+        holder = getHolder();
+
+
+    }
+
+    public void run() {
+        while (isItOk == true) {
+            if (!holder.getSurface().isValid()){
+                continue;
+            }
+
+            Canvas c = holder.lockCanvas();
+            c.drawARGB(255,150,150,10);
+
+            c.drawBitmap(moi,positionActuelle.getX(), positionActuelle.getY(),null);
+            holder.unlockCanvasAndPost(c);
+        }
+
+
+    }
+
+    public void pause(){
+        isItOk = false;
+        while(true){
+            try{
+                t.join();
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            break;
+        }
+        t = null;
+    }
+
+    public void resume(){
+        isItOk = true;
+        t = new Thread(this);
+        t.start();
+    }
+
+
+    }
+
 }
