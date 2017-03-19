@@ -24,7 +24,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+
 import test.getyourway.BASE_DE_DONNEES.BDD;
+import test.getyourway.MODELE.Bloc;
+import test.getyourway.MODELE.Carte;
+import test.getyourway.MODELE.Ligne;
 import test.getyourway.MODELE.Position;
 import test.getyourway.R;
 
@@ -38,11 +43,13 @@ public class MainActivity extends AppCompatActivity
     private float positionX;
     private float positionY;
     private String message;
+    private int Id_Carte_Choisie;
     private Position positionActuelle;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+    private ArrayList<Carte> listeCarte;
+    private ArrayList<Bloc> listeBloc;
+    private ArrayList<Ligne> listeLigne;
+    Button bouton_Test;
+
     private GoogleApiClient client;
 
     @Override
@@ -54,6 +61,26 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         scanButton = (Button) findViewById(R.id.scan);
+
+        // TEST
+        bouton_Test = (Button) findViewById(R.id.test);
+        bouton_Test.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        boolean success = MA_BD.insertBloc("rectangle","salle 4",1);
+                        if (success == true){
+                            Toast.makeText(MainActivity.this, "Insertion réussi", Toast.LENGTH_LONG).show();
+                        }
+                        else Toast.makeText(MainActivity.this, "Echec de l'insertion", Toast.LENGTH_LONG).show();
+
+                    }
+                }
+
+
+        );
+        // FIN TEST
         final Activity activity = this;
 
 

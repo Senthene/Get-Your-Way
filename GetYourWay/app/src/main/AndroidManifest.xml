@@ -32,7 +32,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".VUE.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".VUE.rechercheCarteActivity"
+            android:label="@string/title_activity_recherche_carte"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

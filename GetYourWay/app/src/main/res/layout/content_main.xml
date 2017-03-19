@@ -47,5 +47,17 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:text="TEST"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/test"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/scan"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

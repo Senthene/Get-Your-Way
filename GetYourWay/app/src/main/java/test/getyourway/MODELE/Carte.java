@@ -16,15 +16,15 @@ public class Carte {
     int etage;
     ArrayList <Bloc> ListBloc;
 
-    public Carte (int id, String n , String a, int cp, String m, int e, ArrayList<Bloc> l){
+    public Carte (String n , String a, int cp, String m, int e){
 
         nom = n;
         adresse = a;
         this. cp = cp;
         mail = m;
         etage = e;
-        ListBloc = l;
-        idCarte = id;
+        //ListBloc = l;
+        ;
 
     }
 
