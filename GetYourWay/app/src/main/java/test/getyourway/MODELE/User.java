@@ -1,4 +1,4 @@
-package test.getyourway;
+package test.getyourway.MODELE;
 
 /**
  * Created by Sénthène on 09/01/2017.

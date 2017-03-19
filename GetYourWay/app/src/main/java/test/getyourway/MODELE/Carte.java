@@ -1,4 +1,4 @@
-package test.getyourway;
+package test.getyourway.MODELE;
 
 import java.util.ArrayList;
 

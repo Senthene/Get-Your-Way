@@ -1,4 +1,4 @@
-package test.getyourway;
+package test.getyourway.VUE;
 
 
 import android.annotation.TargetApi;
@@ -21,6 +21,8 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 
 import java.util.List;
+
+import test.getyourway.R;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On

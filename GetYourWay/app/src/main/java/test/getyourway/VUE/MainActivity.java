@@ -1,4 +1,4 @@
-package test.getyourway;
+package test.getyourway.VUE;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,12 +24,17 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import test.getyourway.BASE_DE_DONNEES.BDD;
+import test.getyourway.MODELE.Position;
+import test.getyourway.R;
+
 // test
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button scanButton;
+    private BDD MA_BD;
     private float positionX;
     private float positionY;
     private String message;
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MA_BD = new BDD (this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

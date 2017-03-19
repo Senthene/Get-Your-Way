@@ -1,4 +1,4 @@
-package test.getyourway;
+package test.getyourway.VUE;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

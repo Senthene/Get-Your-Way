@@ -1,8 +1,10 @@
-package test.getyourway;
+package test.getyourway.TEST;
 
 import android.content.Context;
 import android.view.View;
 import android.graphics.*;
+
+import test.getyourway.MODELE.Bloc;
 
 /**
  * Created by Sénthène on 13/03/2017.

@@ -1,15 +1,9 @@
-package test.getyourway;
+package test.getyourway.VUE;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.widget.ImageView;
 
 import com.google.android.gms.appindexing.Action;
@@ -19,6 +13,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 
+import test.getyourway.MODELE.Ligne;
+import test.getyourway.R;
+
 public class CarteActivity extends AppCompatActivity {
 
     /**
@@ -26,11 +23,8 @@ public class CarteActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-    Bitmap moi;
-    OurView v;
-    float pX = 0;
-    float pY = 0;
-    Position positionActuelle  = new Position(pX, pY);
+
+    DrawMap v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,32 +32,12 @@ public class CarteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carte);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        v = new OurView(this);
+        v = new DrawMap(this);
         setContentView(v);
         //v.setOntouchListener(this);
         ArrayList<Ligne> listeLignes = null;
 
-        DrawView drawView;
-
-
-        moi = BitmapFactory.decodeResource(getResources(), R.drawable.smiley);
-
-
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-
-
-  /*  protected void onDraw (int a, int b, int c, int d){
-
-        Rect rectangle = new Rect();
-        rectangle.set(a, b, c, d);
-        Paint rect = new Paint();
-        rect.setColor(Color.BLACK);
-        rect.setStyle(Paint.Style.FILL);
-        v.drawRect (rectangle, rect);
-
-    }*/
-
 
         //  public void setOntouchListener(CarteActivity; Object ontouchListener;
 
@@ -77,6 +51,7 @@ public class CarteActivity extends AppCompatActivity {
 
 
     }
+
 
 
 
@@ -147,61 +122,7 @@ public class CarteActivity extends AppCompatActivity {
     public void onResume(){
         super.onResume();
         v.resume();
-    }
-
-
-
-
-
-    public class OurView extends SurfaceView implements Runnable {
-
-    Thread t = null;
-    SurfaceHolder holder;
-    boolean isItOk = false;
-
-    public OurView (Context context) {
-        super (context);
-        holder = getHolder();
-
-
-    }
-
-    public void run() {
-        while (isItOk == true) {
-            if (!holder.getSurface().isValid()){
-                continue;
-            }
-
-            Canvas c = holder.lockCanvas();
-            c.drawARGB(255,150,150,10);
-
-            c.drawBitmap(moi,positionActuelle.getX(), positionActuelle.getY(),null);
-            holder.unlockCanvasAndPost(c);
         }
 
-
-    }
-
-    public void pause(){
-        isItOk = false;
-        while(true){
-            try{
-                t.join();
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
-            break;
-        }
-        t = null;
-    }
-
-    public void resume(){
-        isItOk = true;
-        t = new Thread(this);
-        t.start();
-    }
-
-
-    }
 
 }
