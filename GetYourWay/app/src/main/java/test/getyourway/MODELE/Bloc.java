@@ -14,13 +14,13 @@ public class Bloc {
     int idCarte;
     ArrayList <Ligne> listLignes;
 
-    public Bloc (String t, String n, int i){
+    public Bloc (int id, String t, String n, int i){
 
         type = t;
         nom = n;
         idCarte = i;
         //listLignes = l;
-       // idBloc = id;
+       idBloc = id;
     }
 
     public String getNomBloc(){

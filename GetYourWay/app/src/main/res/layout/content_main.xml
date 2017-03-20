@@ -13,25 +13,6 @@
     tools:context="test.getyourway.VUE.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Où voulez-vous y aller ?"
-        android:id="@+id/textView3"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:autoText="true"
-        android:elegantTextHeight="true"
-        android:layout_centerVertical="false"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="false" />
-
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="Scanner ma position"
         android:layout_width="wrap_content"
@@ -58,6 +39,26 @@
         android:layout_marginTop="45dp"
         android:layout_below="@+id/scan"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Où voulez-vous y aller ?"
+        android:id="@+id/textView3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:autoText="true"
+        android:elegantTextHeight="true"
+        android:layout_centerInParent="false"
+        android:layout_marginTop="49dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/scan" />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recherche_Destination"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

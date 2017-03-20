@@ -28,7 +28,6 @@ import java.util.ArrayList;
 
 import test.getyourway.BASE_DE_DONNEES.BDD;
 import test.getyourway.MODELE.Bloc;
-import test.getyourway.MODELE.Carte;
 import test.getyourway.MODELE.Ligne;
 import test.getyourway.MODELE.Position;
 import test.getyourway.R;
@@ -45,10 +44,10 @@ public class MainActivity extends AppCompatActivity
     private String message;
     private int Id_Carte_Choisie;
     private Position positionActuelle;
-    private ArrayList<Carte> listeCarte;
     private ArrayList<Bloc> listeBloc;
     private ArrayList<Ligne> listeLigne;
     Button bouton_Test;
+    //private String recherche;
 
     private GoogleApiClient client;
 
@@ -62,6 +61,7 @@ public class MainActivity extends AppCompatActivity
 
         scanButton = (Button) findViewById(R.id.scan);
 
+
         // TEST
         bouton_Test = (Button) findViewById(R.id.test);
         bouton_Test.setOnClickListener(
@@ -69,11 +69,17 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
 
-                        boolean success = MA_BD.insertBloc("rectangle","salle 4",1);
+                        /* boolean success = MA_BD.insertBloc("rectangle","salle 4",1);
                         if (success == true){
                             Toast.makeText(MainActivity.this, "Insertion réussi", Toast.LENGTH_LONG).show();
                         }
-                        else Toast.makeText(MainActivity.this, "Echec de l'insertion", Toast.LENGTH_LONG).show();
+                        else Toast.makeText(MainActivity.this, "Echec de l'insertion", Toast.LENGTH_LONG).show(); */
+                        Intent rechercherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+                        // positionActuelle.setPosition(positionX,positionY);
+                        //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+                        //afficherCarte.putExtra("positionX", positionX);
+                        startActivity(rechercherCarte);
+
 
                     }
                 }

@@ -190,7 +190,7 @@ public class BDD extends SQLiteOpenHelper{
             Cursor c = db.rawQuery(requete, null);
             if (c.moveToFirst()){
                 do {
-                    Carte carte = new Carte(c.getString(1), c.getString(2), c.getInt(3), c.getString(4), c.getInt(5));
+                    Carte carte = new Carte(c.getInt(0),c.getString(1), c.getString(2), c.getInt(3), c.getString(4), c.getInt(5));
                     listeCarte.add(carte);
                 } while (c.moveToNext());
             }
@@ -210,7 +210,7 @@ public class BDD extends SQLiteOpenHelper{
             Cursor c = db.rawQuery(requete, null);
             if (c.moveToFirst()){
                 do {
-                    Bloc bloc = new Bloc(c.getString(1), c.getString(2), c.getInt(3));
+                    Bloc bloc = new Bloc(c.getInt(0),c.getString(1), c.getString(2), c.getInt(3));
                     listeBloc.add(bloc);
                 } while (c.moveToNext());
             }
@@ -230,7 +230,7 @@ public class BDD extends SQLiteOpenHelper{
             Cursor c = db.rawQuery(requete, null);
             if (c.moveToFirst()){
                 do {
-                    Ligne ligne = new Ligne(c.getInt(1), c.getInt(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getInt(7), c.getInt(8), c.getInt(9));
+                    Ligne ligne = new Ligne(c.getInt(0), c.getInt(1), c.getInt(2), c.getInt(3), c.getInt(4), c.getInt(5), c.getInt(6), c.getInt(7), c.getInt(8), c.getInt(9));
                     listeLigne.add(ligne);
                 } while (c.moveToNext());
             }

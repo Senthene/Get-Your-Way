@@ -16,12 +16,13 @@ public class Carte {
     int etage;
     ArrayList <Bloc> ListBloc;
 
-    public Carte (String n , String a, int cp, String m, int e){
+    public Carte (int id, String n , String a, int cp, String m, int e){
 
         nom = n;
         adresse = a;
         this. cp = cp;
         mail = m;
+        idCarte =id;
         etage = e;
         //ListBloc = l;
         ;
@@ -36,6 +37,16 @@ public class Carte {
     public int getEtage(){
         return etage;
     }
+    public int getId(){
+        return idCarte;
+    }
+    public String getNom(){
+        return nom;
+    }
+    public String getAdresse(){
+        return adresse;
+    }
+
 
     public ArrayList<Bloc> getBloc (){
         return ListBloc;

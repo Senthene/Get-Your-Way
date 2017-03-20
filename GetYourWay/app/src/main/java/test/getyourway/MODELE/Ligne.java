@@ -31,9 +31,10 @@ public class Ligne {
     }
 
 
-    public Ligne (int i, float dx, float dy,  float dz, float fx, float fy,  float fz, float l, float a){
+    public Ligne (int id, int i, float dx, float dy,  float dz, float fx, float fy,  float fz, float l, float a){
 
         idCarte = i;
+        idLigne = id;
         departX = dx;
         departY = dy;
         departZ = dz;
@@ -42,7 +43,6 @@ public class Ligne {
         finZ = fz;
         longueur = l;
         angle = a;
-        //idLigne = id;
     }
 
     public float getDepartX(){
