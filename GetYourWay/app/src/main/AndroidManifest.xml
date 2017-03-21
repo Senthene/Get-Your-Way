@@ -35,7 +35,7 @@
             android:label="@string/title_activity_settings" />
         <activity
             android:name=".VUE.RechercheCarteActivity"
-            android:label="@string/title_activity_recherche_carte"
+            android:label="Rechercher un bâtiment"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

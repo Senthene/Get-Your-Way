@@ -21,16 +21,16 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="176dp"
-        android:id="@+id/recherche" />
-
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="445dp"
         android:id="@+id/liste_carte"
         android:layout_marginTop="150dp" />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="176dp"
+        android:id="@+id/recherche" />
 
 
 </android.support.design.widget.CoordinatorLayout>
