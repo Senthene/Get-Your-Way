@@ -9,7 +9,9 @@
         android:id="@+id/Nom_Carte"
         android:textStyle="normal|bold"
         android:textColor="@android:color/black"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:layout_marginLeft="10dp"
+        android:textAlignment="textStart" />
 
     <TextView
         android:layout_width="97dp"
@@ -17,6 +19,7 @@
         android:id="@+id/Adresse_Carte"
         android:fontFamily="sans-serif"
         android:textColor="@android:color/holo_blue_light"
+        android:layout_marginLeft="10dp"
         android:textSize="10sp"
         android:textStyle="normal|italic" />
 
