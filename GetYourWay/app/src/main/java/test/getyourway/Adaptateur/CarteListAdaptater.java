@@ -1,4 +1,4 @@
-package test.getyourway.MODELE;
+package test.getyourway.Adaptateur;
 
 import android.content.Context;
 import android.view.View;
@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import test.getyourway.MODELE.Carte;
 import test.getyourway.R;
 
 /**

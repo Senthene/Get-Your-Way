@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="test.getyourway.VUE.CarteActivity">
+    tools:context="test.getyourway.VUE.MesCartesActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,10 +21,12 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_carte" />
+    <include layout="@layout/content_mes_cartes" />
 
-    <SearchView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="405dp" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        android:id="@+id/MesCartes" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -4,11 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -18,7 +14,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.ArrayList;
 
 import test.getyourway.MODELE.Carte;
-import test.getyourway.MODELE.CarteListAdaptater;
+import test.getyourway.Adaptateur.CarteListAdaptater;
 import test.getyourway.R;
 
 public class RechercheCarteActivity extends AppCompatActivity {
@@ -56,20 +52,26 @@ public class RechercheCarteActivity extends AppCompatActivity {
         ArrayList<Carte> test = new ArrayList<>();
         test.add(new Carte(1, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5));
         test.add(new Carte(2, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2));
-        test.add(new Carte(3, "MAISON", "Villeneuve-Saint-Gorges", 94190, "seycha.sth@live.fr", 3));
+        test.add(new Carte(3, "Bel épine", "Thiais", 94190, "seycha.sth@live.fr", 3));
+        test.add(new Carte(4, "Caré sénart", "Moissy-Cramayel",77550, "seycha.sth@live.fr", 2));
+        test.add(new Carte(5, "Beaugrenelle", "Paris", 75008, "seycha.sth@live.fr",4));
+        test.add(new Carte(6, "Aeroville", "Saint-denis", 93190, "seycha.sth@live.fr", 2));
+        test.add(new Carte(7, "Créteil Soleil", "Créteil", 94090, "seycha.sth@live.fr", 3));
+        test.add(new Carte(8, "Disneyland Paris", "Paris", 75190, "seycha.sth@live.fr", 0));
+        test.add(new Carte(9, "Parc Astérix", "Paris", 94190, "seycha.sth@live.fr", 0));
 
         adaptater = new CarteListAdaptater(getApplicationContext(), test);
         viewListeCarte.setAdapter(adaptater);
 
-        viewListeCarte.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* viewListeCarte.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "Carte sélectionnée dont l'id est " + view.getTag(), Toast.LENGTH_SHORT).show();
-                Log.e("test","Test");
+
             }
 
-        });
+        }); */
 
         /*Button telecharger = (Button) findViewById(R.id.telecharger);
         telecharger.setOnClickListener(

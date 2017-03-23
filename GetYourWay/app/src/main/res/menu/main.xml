@@ -2,8 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/afficheMesCartes"
         android:orderInCategory="100"
-        android:title="Télecharger la carte"
+        android:title="Afficher mes bâtiments"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/telechargerCarte"
+        android:orderInCategory="100"
+        android:title="Telecharger une carte"
         app:showAsAction="never" />
 </menu>

@@ -81,4 +81,5 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_recherche_carte">rechercheCarteActivity</string>
+    <string name="title_activity_mes_cartes">MesCartesActivity</string>
 </resources>

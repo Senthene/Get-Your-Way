@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Nom_MesCarte"
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/black"
+        android:textSize="14sp"
+        android:layout_marginLeft="10dp"
+        android:textAlignment="textStart" />
+
+    <TextView
+        android:layout_width="97dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Adresse_MesCarte"
+        android:fontFamily="sans-serif"
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_marginLeft="10dp"
+        android:textSize="10sp"
+        android:textStyle="normal|italic" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Etage_MesCarte"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="10sp"
+        android:textStyle="normal|italic"
+        android:textAlignment="textEnd" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="96dp">
+
+        <Button
+            android:text="Mettre à jour"
+            android:layout_width="131dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="230dp"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"
+            android:fontFamily="sans-serif-medium"
+            android:id="@+id/misaJour"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="13dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="Supprimer"
+            android:layout_width="131dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="230dp"
+            android:textColor="@android:color/white"
+            android:background="@color/colorPrimary"
+            android:fontFamily="sans-serif-medium"
+            android:id="@+id/supprimer"
+            android:src = "@drawable/toilettes_color"
+            android:layout_alignBaseline="@+id/misaJour"
+            android:layout_alignBottom="@+id/misaJour"
+            android:layout_toEndOf="@+id/misaJour"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="73dp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

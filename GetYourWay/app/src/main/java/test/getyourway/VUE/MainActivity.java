@@ -1,6 +1,8 @@
 package test.getyourway.VUE;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -69,16 +71,19 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
 
-                        /* boolean success = MA_BD.insertBloc("rectangle","salle 4",1);
-                        if (success == true){
-                            Toast.makeText(MainActivity.this, "Insertion réussi", Toast.LENGTH_LONG).show();
-                        }
-                        else Toast.makeText(MainActivity.this, "Echec de l'insertion", Toast.LENGTH_LONG).show(); */
-                        Intent rechercherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
-                        // positionActuelle.setPosition(positionX,positionY);
-                        //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
-                        //afficherCarte.putExtra("positionX", positionX);
-                        startActivity(rechercherCarte);
+                        AlertDialog.Builder popupSuppression = new AlertDialog.Builder(MainActivity.this);
+                        popupSuppression.setMessage("Etes-vous sûr de vouloir supprimer la carte du batîment ");
+                        popupSuppression.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(MainActivity.this, "Carte supprimé", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        popupSuppression.setNegativeButton("Non",null);
+
+                        AlertDialog alert = popupSuppression.create();
+                        alert.show();
+
 
 
                     }
@@ -188,8 +193,26 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.telechargerCarte) {
+            //  if (position == null){
+            // Snackbar.make(view, "Scannez votre position", Snackbar.LENGTH_LONG).setAction("Action", null).show();} else ...
+            Intent telechargerCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+            // positionActuelle.setPosition(positionX,positionY);
+            //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+            //afficherCarte.putExtra("positionX", positionX);
+            startActivity(telechargerCarte);
+
+        }
+
+        if (id == R.id.afficheMesCartes) {
+            //  if (position == null){
+            // Snackbar.make(view, "Scannez votre position", Snackbar.LENGTH_LONG).setAction("Action", null).show();} else ...
+            Intent mesCartes = new Intent(MainActivity.this, MesCartesActivity.class);
+            // positionActuelle.setPosition(positionX,positionY);
+            //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+            //afficherCarte.putExtra("positionX", positionX);
+            startActivity(mesCartes);
+
         }
 
         return super.onOptionsItemSelected(item);
