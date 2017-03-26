@@ -1,5 +1,8 @@
 package test.getyourway.VUE;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -36,9 +39,29 @@ public class MesCartesActivity extends AppCompatActivity {
         // TEST
 
         ArrayList<Carte> test = new ArrayList<>();
-        test.add(new Carte(1, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5));
-        test.add(new Carte(2, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2));
-        test.add(new Carte(3, "MAISON", "Villeneuve-Saint-Gorges", 94190, "seycha.sth@live.fr", 3));
+        //test.add(new Carte(1, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5));
+        //test.add(new Carte(2, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2));
+        //test.add(new Carte(3, "MAISON", "Villeneuve-Saint-Gorges", 94190, "seycha.sth@live.fr", 3));
+
+        if (test.size()==0){
+            AlertDialog.Builder popupSuppression = new AlertDialog.Builder(MesCartesActivity.this);
+            popupSuppression.setMessage("Vous n'avez pas de bâtiment dans votre liste. Voulez-vous en télécharger ?");
+            popupSuppression.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(MesCartesActivity.this, "Carte supprimé", Toast.LENGTH_SHORT).show();
+                    Intent afficherCarte = new Intent(MesCartesActivity.this, RechercheCarteActivity.class);
+                    // positionActuelle.setPosition(positionX,positionY);
+                    //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+                    //afficherCarte.putExtra("positionX", positionX);
+                    startActivity(afficherCarte);
+                }
+            });
+            popupSuppression.setNegativeButton("Non",null);
+
+            AlertDialog alert = popupSuppression.create();
+            alert.show();
+        }
 
         adaptater = new MesCartesListAdaptater(getApplicationContext(), test);
         viewListeCarte.setAdapter(adaptater);

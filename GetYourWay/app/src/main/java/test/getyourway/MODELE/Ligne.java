@@ -7,66 +7,70 @@ package test.getyourway.MODELE;
 public class Ligne {
 
 
-    int idLigne;
-    int idCarte;
-    float departX;
-    float departY;
-    float departZ;
-    float finX;
-    float finY;
-    float finZ;
-    float longueur;
-    float angle;
+    private int idLigne;
+    private int idBloc;
+    private float departX;
+    private float departY;
+    private float departZ;
+    private float finX;
+    private float finY;
+    private float finZ;
+    private float longueur;
+    private float angle;
 
     // Pas de depart Z et de fin Z car nous restons dans le 2D
 
-    public Ligne (float dx, float dy, float dz, float fx, float fy, float fz){
+    public Ligne (int idLigne, int idBloc, float departX, float departY, float departZ, float finX, float finY, float finZ, float longueur, float angle){
 
-        departX = dx;
-        departY = dy;
-        departZ = dz;
-        finX = fx;
-        finY = fy;
-        finZ = fz;
+        this.idLigne=idLigne ;
+        this.idBloc=idBloc;
+        this.departX=departX;
+        this.departY=departY;
+        this.departZ=departZ;
+        this.finX=finX;
+        this.finY=finY;
+        this.finZ=finZ;
+        this.longueur=longueur;
+        this.angle=angle;
     }
 
-
-    public Ligne (int id, int i, float dx, float dy,  float dz, float fx, float fy,  float fz, float l, float a){
-
-        idCarte = i;
-        idLigne = id;
-        departX = dx;
-        departY = dy;
-        departZ = dz;
-        finX = fx;
-        finY = fy;
-        finZ = fz;
-        longueur = l;
-        angle = a;
+    public int getIdLigne() {
+        return idLigne;
     }
 
-    public float getDepartX(){
+    public int getIdBloc() {
+        return idBloc;
+    }
+
+    public float getDepartX() {
         return departX;
     }
 
-    public float getDepartY(){
+    public float getDepartY() {
         return departY;
     }
 
-    public float getFinX(){
+    public float getDepartZ() {
+        return departZ;
+    }
+
+    public float getFinX() {
         return finX;
     }
 
-    public float getFinY(){
+    public float getFinY() {
         return finY;
     }
-    public float getLongueur(){
+
+    public float getFinZ() {
+        return finZ;
+    }
+
+    public float getLongueur() {
         return longueur;
     }
-    public float getAngle(){
+
+    public float getAngle() {
         return angle;
     }
-
-
-
 }

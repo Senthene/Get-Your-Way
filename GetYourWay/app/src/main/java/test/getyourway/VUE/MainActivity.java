@@ -16,7 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -27,9 +29,11 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import test.getyourway.BASE_DE_DONNEES.BDD;
 import test.getyourway.MODELE.Bloc;
+import test.getyourway.MODELE.Carte;
 import test.getyourway.MODELE.Ligne;
 import test.getyourway.MODELE.Position;
 import test.getyourway.R;
@@ -48,8 +52,19 @@ public class MainActivity extends AppCompatActivity
     private Position positionActuelle;
     private ArrayList<Bloc> listeBloc;
     private ArrayList<Ligne> listeLigne;
+    public ArrayList<Carte> mesCartes = new ArrayList<>();
+    public ArrayList<String> nomsCartes = new ArrayList<>();
+    String boutonChoisir = "Choisir un bâtiment";
+    String boutonChanger = "Changer de bâtiment";
     Button bouton_Test;
+    ListView carteAchoisir =  null;
+    private Carte carteSelectionne;
+    AlertDialog ad;
+    String [] nomsCartesString;
+
     //private String recherche;
+
+
 
     private GoogleApiClient client;
 
@@ -60,29 +75,110 @@ public class MainActivity extends AppCompatActivity
         MA_BD = new BDD (this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        float temp = (float) 1.00;
 
         scanButton = (Button) findViewById(R.id.scan);
+        mesCartes.add(new Carte(1,1,temp,temp, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5,"null",5));
+        mesCartes.add(new Carte(2,2,temp,temp, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2,"null",2));
+        mesCartes.add(new Carte(3,3,temp,temp,"MAISON", "Villeneuve-Saint-Gorges", 94190, "seycha.sth@live.fr", 3,"null",3));
+        nomsCartes = conversion(mesCartes);
+        carteAchoisir = new ListView(this);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.ligne_batiment_a_charger, R.id.nom, nomsCartes);
+        carteAchoisir.setAdapter(adapter);
+
+
+
+        /*carteAchoisir.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ViewGroup vg = (ViewGroup) view;
+                TextView text = (TextView) vg.findViewById(R.id.nom);
+                Intent telechargerCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+                // positionActuelle.setPosition(positionX,positionY);
+                //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+                //afficherCarte.putExtra("positionX", positionX);
+                startActivity(telechargerCarte);
+                Toast.makeText(MainActivity.this, text.getText().toString(), Toast.LENGTH_LONG).show();
+            }
+        }); */
+
 
 
         // TEST
         bouton_Test = (Button) findViewById(R.id.test);
-        bouton_Test.setOnClickListener(
+       if (carteSelectionne == null){
+           bouton_Test.setText(boutonChoisir);
+       }
+
+        else bouton_Test.setText(boutonChanger);
+       bouton_Test.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
+
+                    // POPUP DE CONFIRMATION
                     public void onClick(View v) {
 
-                        AlertDialog.Builder popupSuppression = new AlertDialog.Builder(MainActivity.this);
-                        popupSuppression.setMessage("Etes-vous sûr de vouloir supprimer la carte du batîment ");
+                        nomsCartesString = conversionChar(mesCartes);
+
+                        if (mesCartes.size()==0){
+                            AlertDialog.Builder popupSuppression = new AlertDialog.Builder(MainActivity.this);
+                            popupSuppression.setMessage("Vous n'avez pas de bâtiment dans votre liste. Voulez-vous en télécharger ?");
+                            popupSuppression.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(MainActivity.this, "Carte supprimé", Toast.LENGTH_SHORT).show();
+                                    Intent afficherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+                                    // positionActuelle.setPosition(positionX,positionY);
+                                    //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+                                    //afficherCarte.putExtra("positionX", positionX);
+                                    startActivity(afficherCarte);
+                                }
+                            });
+                            popupSuppression.setNegativeButton("Non",null);
+
+                            AlertDialog alert = popupSuppression.create();
+                            alert.show();
+
+                        }
+                        else {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            builder.setTitle("Choisissez un bâtiment");
+                            builder.setItems(nomsCartesString, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    Toast.makeText(MainActivity.this, "Bâtiment sélectionné "+nomsCartesString[which], Toast.LENGTH_SHORT).show();
+                                    Intent afficherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+                                    // positionActuelle.setPosition(positionX,positionY);
+                                    //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+                                    //afficherCarte.putExtra("positionX", positionX);
+                                    startActivity(afficherCarte);
+
+                                }
+                            });
+                            builder.setNegativeButton("Annuler", null);
+                            ad= builder.create();
+                            ad.show();
+                        }
+                        /*AlertDialog.Builder popupSuppression = new AlertDialog.Builder(MainActivity.this);
+                        int i = 45;
+                        popupSuppression.setMessage("Etes-vous sûr de vouloir supprimer la carte du batîment "+mesCartes.size());
                         popupSuppression.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int which) {
                                 Toast.makeText(MainActivity.this, "Carte supprimé", Toast.LENGTH_SHORT).show();
+                               // Intent afficherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+                                // positionActuelle.setPosition(positionX,positionY);
+                                //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+                                //afficherCarte.putExtra("positionX", positionX);
+                                //startActivity(afficherCarte);
                             }
                         });
                         popupSuppression.setNegativeButton("Non",null);
 
                         AlertDialog alert = popupSuppression.create();
-                        alert.show();
+                        alert.show(); */
+
 
 
 
@@ -137,6 +233,22 @@ public class MainActivity extends AppCompatActivity
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
+    public String[] conversionChar(ArrayList<Carte> c){
+        int arraySize = c.size();
+        String temp [] = new String[arraySize];
+        Iterator <Carte> res = c.iterator();
+        int i = 0;
+        while (i <= temp.length && res.hasNext()){
+
+                Carte a  = res.next();
+
+                temp[i]= a.getNom();
+                i++;
+        }
+            return temp ;
+    }
+
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -278,5 +390,15 @@ public class MainActivity extends AppCompatActivity
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    public ArrayList<String> conversion (ArrayList<Carte> c){
+        ArrayList<String> noms = new ArrayList<>();
+        Iterator <Carte> res = c.iterator();
+        while (res.hasNext()) {
+            Carte a  = res.next();
+            noms.add(a.getNom());
+        }
+        return noms ;
     }
 }

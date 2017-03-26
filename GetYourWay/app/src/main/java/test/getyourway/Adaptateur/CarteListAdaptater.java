@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import test.getyourway.BASE_DE_DONNEES.BDD;
 import test.getyourway.MODELE.Carte;
 import test.getyourway.R;
 
@@ -49,23 +50,24 @@ public class CarteListAdaptater extends BaseAdapter {
         TextView adresseCarte = (TextView) v.findViewById(R.id.Adresse_Carte);
         TextView etageCarte = (TextView) v.findViewById(R.id.Etage_Carte);
         Button telecharger = (Button) v.findViewById(R.id.telecharger);
+        BDD temp = new BDD(context);
 
 
         nomCarte.setText(listeCarte.get(position).getNom());
         adresseCarte.setText(listeCarte.get(position).getAdresse());
-        etageCarte.setText(String.valueOf(listeCarte.get(position).getEtage())+ " étages");
+        etageCarte.setText(String.valueOf(temp.getCarteNbEtage(listeCarte.get(position).getIdCarte()))+ " étages");
         telecharger.setOnClickListener(
 
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        Toast.makeText(context, "Carte sélectionnée dont l'id est " + listeCarte.get(position).getId(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Carte sélectionnée dont l'id est " + listeCarte.get(position).getIdCarte(), Toast.LENGTH_SHORT).show();
 
                     }
                 }
         );
-        v.setTag(listeCarte.get(position).getId());
+        v.setTag(listeCarte.get(position).getIdCarte());
         return v;
     }
 }

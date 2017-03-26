@@ -50,15 +50,15 @@ public class RechercheCarteActivity extends AppCompatActivity {
         // TEST
 
         ArrayList<Carte> test = new ArrayList<>();
-        test.add(new Carte(1, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5));
-        test.add(new Carte(2, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2));
-        test.add(new Carte(3, "Bel épine", "Thiais", 94190, "seycha.sth@live.fr", 3));
-        test.add(new Carte(4, "Caré sénart", "Moissy-Cramayel",77550, "seycha.sth@live.fr", 2));
-        test.add(new Carte(5, "Beaugrenelle", "Paris", 75008, "seycha.sth@live.fr",4));
-        test.add(new Carte(6, "Aeroville", "Saint-denis", 93190, "seycha.sth@live.fr", 2));
-        test.add(new Carte(7, "Créteil Soleil", "Créteil", 94090, "seycha.sth@live.fr", 3));
-        test.add(new Carte(8, "Disneyland Paris", "Paris", 75190, "seycha.sth@live.fr", 0));
-        test.add(new Carte(9, "Parc Astérix", "Paris", 94190, "seycha.sth@live.fr", 0));
+        //test.add(new Carte(1, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5));
+        //test.add(new Carte(2, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2));
+        //test.add(new Carte(3, "Bel épine", "Thiais", 94190, "seycha.sth@live.fr", 3));
+        //test.add(new Carte(4, "Caré sénart", "Moissy-Cramayel",77550, "seycha.sth@live.fr", 2));
+        //test.add(new Carte(5, "Beaugrenelle", "Paris", 75008, "seycha.sth@live.fr",4));
+        //test.add(new Carte(6, "Aeroville", "Saint-denis", 93190, "seycha.sth@live.fr", 2));
+        //test.add(new Carte(7, "Créteil Soleil", "Créteil", 94090, "seycha.sth@live.fr", 3));
+        //test.add(new Carte(8, "Disneyland Paris", "Paris", 75190, "seycha.sth@live.fr", 0));
+        //test.add(new Carte(9, "Parc Astérix", "Paris", 94190, "seycha.sth@live.fr", 0));
 
         adaptater = new CarteListAdaptater(getApplicationContext(), test);
         viewListeCarte.setAdapter(adaptater);

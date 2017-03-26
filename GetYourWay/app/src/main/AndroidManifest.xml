@@ -29,7 +29,7 @@
              />
         <activity
             android:name=".VUE.MesCartesActivity"
-            android:label="@string/title_activity_carte"
+            android:label="Mes bâtiments"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".VUE.SettingsActivity"

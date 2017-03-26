@@ -1,35 +1,34 @@
 package test.getyourway.MODELE;
 
 /**
- * Created by Sénthène on 09/01/2017.
+ * Created by Sénthène on 25/03/2017.
  */
 
-public class Bloc {
+public class Repere {
 
-    private int idBloc;
-    private  int idEtage;
+    private int idRepere;
+    private int idEtage;
     private String type;
-    private String nom;
+    private Position position;
     private String dc;
     private int id_dc;
     private String dm;
     private int id_dm;
 
-    public Bloc (int idBloc, int idEtage, String type, String nom, String dc, int id_dc, String dm, int id_dm ){
+    public Repere( int idRepere, int idEtage, String type, float positionX, float positionY , String dc, int id_dc, String dm, int id_dm){
 
-        this.idBloc=idBloc;
+        this.idRepere=idRepere;
         this.idEtage=idEtage;
         this.type=type;
-        this.nom=nom;
+        this.position= new Position(positionX, positionY);
         this.dc=dc;
         this.id_dc=id_dc;
         this.dm=dm;
         this.id_dm=id_dm;
-
     }
 
-    public int getIdBloc() {
-        return idBloc;
+    public int getIdRepere() {
+        return idRepere;
     }
 
     public int getIdEtage() {
@@ -40,8 +39,8 @@ public class Bloc {
         return type;
     }
 
-    public String getNom() {
-        return nom;
+    public Position getPosition() {
+        return position;
     }
 
     public String getDc() {
@@ -60,5 +59,3 @@ public class Bloc {
         return id_dm;
     }
 }
-
-
