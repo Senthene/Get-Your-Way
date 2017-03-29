@@ -31,7 +31,7 @@ import com.google.zxing.integration.android.IntentResult;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import test.getyourway.BASE_DE_DONNEES.BDD;
+import test.getyourway.BASE_DE_DONNEES.BaseDeDonnees;
 import test.getyourway.MODELE.Bloc;
 import test.getyourway.MODELE.Carte;
 import test.getyourway.MODELE.Ligne;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Button scanButton;
-    private BDD MA_BD;
+    private BaseDeDonnees BDD;
     private float positionX;
     private float positionY;
     private String message;
@@ -61,8 +61,11 @@ public class MainActivity extends AppCompatActivity
     private Carte carteSelectionne;
     AlertDialog ad;
     String [] nomsCartesString;
+    Button insertion;
+    float temp = (float) 1.00;
+    boolean charger = false;
 
-    //private String recherche;
+    //private String recher che;
 
 
 
@@ -72,21 +75,67 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MA_BD = new BDD (this);
+        BDD = new BaseDeDonnees(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        float temp = (float) 1.00;
+
+        insertion = (Button)findViewById(R.id.insert);
 
         scanButton = (Button) findViewById(R.id.scan);
-        mesCartes.add(new Carte(1,1,temp,temp, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5,"null",5));
+      //  mesCartes.add(new Carte(1,1,temp,temp, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5,"null",5));
+      //boolean test = MA_BD.insertCarte(1,1,temp,temp, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5,"null",5);
+
+       // MA_BD.insertCarte(2,2,temp,temp, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2,"null",2);
+        //MA_BD.insertCarte(3,3,temp,temp,"MAISON", "Villeneuve-Saint-Gorges", 94190, "seycha.sth@live.fr", 3,"null",3);
+
         mesCartes.add(new Carte(2,2,temp,temp, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2,"null",2));
-        mesCartes.add(new Carte(3,3,temp,temp,"MAISON", "Villeneuve-Saint-Gorges", 94190, "seycha.sth@live.fr", 3,"null",3));
+        mesCartes.add(new Carte(2,2,temp,temp, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 10,"null",10));
+        mesCartes.add(new Carte(2,2,temp,temp, "MAISON", "Villeneuve-Saint-Gorges", 91000, "seycha.sth@live.fr", 3,"null",3));
+        mesCartes.add(new Carte(2,2,temp,temp, "Carré sénart-Saint-Gorges", "Moissy-Cramayel", 91000, "seycha.sth@live.fr", 6,"null",6));
+        mesCartes.add(new Carte(2,2,temp,temp, "Bel épine", "Thiais", 91000, "seycha.sth@live.fr", 1,"null",1));
+        mesCartes.add(new Carte(2,2,temp,temp, "Aeroville", "Saint-denis", 91000, "seycha.sth@live.fr", 0,"null",0));
+        mesCartes.add(new Carte(2,2,temp,temp, "Créteil Soleil", "Créteil", 91000, "seycha.sth@live.fr", 2,"null",2));
+        mesCartes.add(new Carte(2,2,temp,temp, "Disneyland Paris", "Paris", 91000, "seycha.sth@live.fr", 4,"null",4));
+        mesCartes.add(new Carte(2,2,temp,temp, "Parc Astérix", "Paris", 91000, "seycha.sth@live.fr", 3,"null",3));
         nomsCartes = conversion(mesCartes);
+        //mesCartes = MA_BD.getListeCarte();
         carteAchoisir = new ListView(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.ligne_batiment_a_charger, R.id.nom, nomsCartes);
         carteAchoisir.setAdapter(adapter);
 
 
+        insertion.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+
+                    // POPUP DE CONFIRMATION
+                    public void onClick(View v) {
+
+                        boolean test = false;
+                        BDD.insertCarte(2, 2, temp, temp, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2, "null", 2);
+                        if (test == true) {
+                            AlertDialog.Builder popupSuppression = new AlertDialog.Builder(MainActivity.this);
+                            popupSuppression.setMessage("Insertion réussi");
+                            popupSuppression.setPositiveButton("Ok", null); {
+
+                                AlertDialog alert = popupSuppression.create();
+                                alert.show();
+                            }
+
+                        } else {
+                            AlertDialog.Builder popupSuppressio = new AlertDialog.Builder(MainActivity.this);
+                            popupSuppressio.setMessage("Insertion raté");
+                            popupSuppressio.setPositiveButton("Ok", null); {
+
+                                AlertDialog alert = popupSuppressio.create();
+                                alert.show();
+                            }
+                        }
+
+                    }
+
+
+                });
 
         /*carteAchoisir.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -127,11 +176,12 @@ public class MainActivity extends AppCompatActivity
 
                                 public void onClick(DialogInterface dialog, int which) {
                                     Toast.makeText(MainActivity.this, "Carte supprimé", Toast.LENGTH_SHORT).show();
-                                    Intent afficherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+                                   // Intent afficherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+
                                     // positionActuelle.setPosition(positionX,positionY);
                                     //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
                                     //afficherCarte.putExtra("positionX", positionX);
-                                    startActivity(afficherCarte);
+                                    //startActivity(afficherCarte);
                                 }
                             });
                             popupSuppression.setNegativeButton("Non",null);
@@ -148,11 +198,12 @@ public class MainActivity extends AppCompatActivity
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     Toast.makeText(MainActivity.this, "Bâtiment sélectionné "+nomsCartesString[which], Toast.LENGTH_SHORT).show();
-                                    Intent afficherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+                                    //Intent afficherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
                                     // positionActuelle.setPosition(positionX,positionY);
                                     //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
                                     //afficherCarte.putExtra("positionX", positionX);
-                                    startActivity(afficherCarte);
+                                   // startActivity(afficherCarte);
+                                    charger =true;
 
                                 }
                             });
@@ -197,13 +248,38 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onClick(View view) {
-                IntentIntegrator integrator = new IntentIntegrator(activity);
-                integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
-                integrator.setPrompt("Scan de votre position actuelle");
-                integrator.setCameraId(0);
-                integrator.setBeepEnabled(false);
-                integrator.setBarcodeImageEnabled(false);
-                integrator.initiateScan();
+                if (charger == true) {
+                    IntentIntegrator integrator = new IntentIntegrator(activity);
+                    integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+                    integrator.setPrompt("Scan de votre position actuelle");
+                    integrator.setCameraId(0);
+                    integrator.setBeepEnabled(false);
+                    integrator.setBarcodeImageEnabled(false);
+                    integrator.initiateScan();
+                }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Choisissez un bâtiment");
+                   // builder.setItems(nomsCartesString, new DialogInterface.OnClickListener() {
+                      //  @Override
+                      //  public void onClick(DialogInterface dialog, int which) {
+
+                          //  Toast.makeText(MainActivity.this, "Bâtiment sélectionné "+nomsCartesString[which], Toast.LENGTH_SHORT).show();
+                            //Intent afficherCarte = new Intent(MainActivity.this, RechercheCarteActivity.class);
+                            // positionActuelle.setPosition(positionX,positionY);
+                            //afficherCarte.putExtra("positionActuelle", (Parcelable) positionActuelle);
+                            //afficherCarte.putExtra("positionX", positionX);
+                            //startActivity(afficherCarte);
+                            //charger =true;
+
+                        //}
+                   // });
+                    builder.setNegativeButton("Ok", null);
+                    ad= builder.create();
+                    ad.show();
+
+
+                }
             }
 
         });

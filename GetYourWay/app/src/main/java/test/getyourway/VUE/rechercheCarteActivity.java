@@ -33,6 +33,9 @@ public class RechercheCarteActivity extends AppCompatActivity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
+    float temp = (float) 1.00;
+    int i =0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,16 @@ public class RechercheCarteActivity extends AppCompatActivity {
         // TEST
 
         ArrayList<Carte> test = new ArrayList<>();
+       test.add(new Carte(2,2,temp,temp, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2,"null",2));
+        test.add(new Carte(2,2,temp,temp, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 10,"null",10));
+        test.add(new Carte(2,2,temp,temp, "MAISON", "Villeneuve-Saint-Gorges", 91000, "seycha.sth@live.fr", 3,"null",3));
+        test.add(new Carte(2,2,temp,temp, "Carré sénart-Saint-Gorges", "Moissy-Cramayel", 91000, "seycha.sth@live.fr", 6,"null",6));
+        test.add(new Carte(2,2,temp,temp, "Bel épine", "Thiais", 91000, "seycha.sth@live.fr", 1,"null",1));
+        test.add(new Carte(2,2,temp,temp, "Aeroville", "Saint-denis", 91000, "seycha.sth@live.fr", 0,"null",0));
+        test.add(new Carte(2,2,temp,temp, "Créteil Soleil", "Créteil", 91000, "seycha.sth@live.fr", 2,"null",2));
+        test.add(new Carte(2,2,temp,temp, "Disneyland Paris", "Paris", 91000, "seycha.sth@live.fr", 4,"null",4));
+        test.add(new Carte(2,2,temp,temp, "Parc Astérix", "Paris", 91000, "seycha.sth@live.fr", 3,"null",3));
+        //MA_BD.insertCarte(3,3,temp,temp,"MAISON", "Villeneuve-Saint-Gorges", 94190, "seycha.sth@live.fr", 3,"null",3);
         //test.add(new Carte(1, "IBGBI", "EVRY", 91000, "seycha.sth@live.fr", 5));
         //test.add(new Carte(2, "AGORA", "EVRY", 91000, "seycha.sth@live.fr", 2));
         //test.add(new Carte(3, "Bel épine", "Thiais", 94190, "seycha.sth@live.fr", 3));

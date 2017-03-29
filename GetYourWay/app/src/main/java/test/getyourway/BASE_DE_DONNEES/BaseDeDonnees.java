@@ -20,9 +20,9 @@ import test.getyourway.MODELE.User;
  * Created by Sénthène on 19/03/2017.
  */
 
-public class BDD extends SQLiteOpenHelper{
+public class BaseDeDonnees extends SQLiteOpenHelper{
 
-    private static String DATABASE_NAME = "BD_GET_YOUR_WAY.db";
+    private static String DATABASE_NAME = "BDD_GET_YOUR_WAY.db";
     private int DATABASE_VERSION = 1;
     private ArrayList<Carte> listeCarte;
     private ArrayList<Bloc> listeBloc;
@@ -124,7 +124,7 @@ public class BDD extends SQLiteOpenHelper{
 
 
 
-    public BDD (Context context){
+    public BaseDeDonnees(Context context){
 
         super(context, DATABASE_NAME, null, 1 );
 
@@ -134,7 +134,7 @@ public class BDD extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db = this.getWritableDatabase();
         // CREATION DE LA TABLE USER
         db.execSQL("CREATE TABLE "+ j01_list_user +" (" +J01_ID_USER+ " INTEGER PRIMARY KEY, "
                                                     + J01_PROFIL + " TEXT , "+ J01_EMAIL + " TEXT, "+ J01_PASSWORD +
@@ -175,6 +175,7 @@ public class BDD extends SQLiteOpenHelper{
 
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
@@ -210,14 +211,16 @@ public class BDD extends SQLiteOpenHelper{
             valeurs.put(J03_ID_UC, id_uc);
             valeurs.put(J03_DM, dm);
             valeurs.put(J03_ID_DM, id_dm);
+            //db.insert(j03_list_carte, null, valeurs);
 
-            long result = db.insert(j03_list_carte, null, valeurs);
+            long result = db.insert(j03_list_carte, "", valeurs);
             if (result == -1) {
                 return false;
             } else return true;
         }
         else return false;
     }
+
 
     public boolean isCarteExist (String nom){
         Cursor res = this.getAllCarteByName(nom);
@@ -518,6 +521,21 @@ public class BDD extends SQLiteOpenHelper{
     }
 
 
+    public boolean supprimerCarte(int idCarte){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues valeurs = new ContentValues();
+
+        long result = db.delete(j03_list_carte,J03_ID_CARTE + " = " +idCarte,null);
+
+        // RENTRER DANS CETE METHODE TUES LES METHODES DELETE DES AUTRES TABLES
+
+
+        if(result == 0){
+            return false;
+        }
+        else return true;
+
+    }
 
 
     // Méthode permettant de récupérer le nombre d'étage par bâtiment

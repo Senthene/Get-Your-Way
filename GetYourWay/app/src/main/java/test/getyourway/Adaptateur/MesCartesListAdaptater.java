@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import test.getyourway.BASE_DE_DONNEES.BDD;
+import test.getyourway.BASE_DE_DONNEES.BaseDeDonnees;
 import test.getyourway.MODELE.Carte;
 import test.getyourway.R;
 
@@ -23,7 +23,7 @@ public class MesCartesListAdaptater extends BaseAdapter {
 
     private Context context;
     private ArrayList<Carte> mesCartes;
-    BDD temp;
+    BaseDeDonnees temp;
 
     public MesCartesListAdaptater(Context context, ArrayList<Carte> mesCartes) {
 
@@ -54,12 +54,12 @@ public class MesCartesListAdaptater extends BaseAdapter {
         TextView adresseCarte = (TextView) v.findViewById(R.id.Adresse_MesCarte);
         TextView etageCarte = (TextView) v.findViewById(R.id.Etage_MesCarte);
         Button supprimer = (Button) v.findViewById(R.id.supprimer);
-        temp = new BDD(context);
+        temp = new BaseDeDonnees(context);
 
 
         nomCarte.setText(mesCartes.get(position).getNom());
         adresseCarte.setText(mesCartes.get(position).getAdresse());
-        etageCarte.setText(String.valueOf(temp.getCarteNbEtage(mesCartes.get(position).getIdCarte())) + " étages");
+        //etageCarte.setText(String.valueOf(temp.getCarteNbEtage(mesCartes.get(position).getIdCarte())) + " étages");
         supprimer.setOnClickListener(
 
                 new View.OnClickListener() {
